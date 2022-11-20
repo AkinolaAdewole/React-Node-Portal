@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {io} from 'socket.io-client'
@@ -17,6 +18,18 @@ const Signup = () => {
     const [lastName, setLastName]=useState(null)
     const [email, setEmail] = useState("")
     const [password, setPassWord]=useState(null)
+    const [image,setImage]=useState("")
+
+    // let allUser={firstName,lastName,email,password,image}
+    const register=()=>{
+      axios.post(
+        'http://localhost:4500/signup', {firstName,lastName,email,
+        password}).then(
+        (result)=>{
+
+        }
+      )
+    }
   return (
     <>
 
@@ -38,8 +51,13 @@ const Signup = () => {
                       <input type="text" placeholder='Email' className='form-control'
                        onChange={(e)=>setEmail(e.target.value)} />
 
+                       <input type="file" className='form-control'
+                       onChange={(e)=>setImage(e.target.value)} />
+
                        <input type="password" placeholder='Password' className='form-control'
                         onChange={(e)=>setPassWord(e.target.value)} />
+
+                        <div className='btn' onClick={register}>SUBMIT</div>
                 </form>
             </div>
         </div>

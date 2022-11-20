@@ -31,7 +31,7 @@ const cors=require('cors')
 app.use(express.json())
 const bodyParser=require('body-parser')
 const {getTodo,addTodo}= require ("./controllers/todoController")
-const { addStudent, getStudent } = require('./controllers/userController')
+const { Register,Login,fetchProfile } = require('./controllers/userController')
 
 // const urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.urlencoded({ extended: true })) 
@@ -75,8 +75,9 @@ mongoose.connect(
 }) 
 
 
-app.post('signup',addStudent)
-app.post('signin',getStudent)
+app.post('/signup',Register)
+app.post('/signin',Login)
+app.get('/fetchProfile', fetchProfile)
 
 
 // To upload file

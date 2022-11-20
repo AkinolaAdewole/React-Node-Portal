@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
     firstName:String,
     lastName:String,
     email:String,
-    password:String,
+    profileImagePath: String,
+		password:String
     }) 
   
     userSchema.pre("save", async function (next){
