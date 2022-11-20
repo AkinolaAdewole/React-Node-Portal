@@ -1,9 +1,18 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {io} from 'socket.io-client'
 const socket = io('http://localhost:4500');
 
 const Signup = () => {
+
+  useEffect(() =>{
+    socket.emit("send-user",{firstname:"Akinola"});
+    socket.on("user-sent",(res)=>{
+      console.log(res)
+    })
+  }, [])
+  
+
     const [firstName, setFirstName] =useState(null)
     const [lastName, setLastName]=useState(null)
     const [email, setEmail] = useState("")

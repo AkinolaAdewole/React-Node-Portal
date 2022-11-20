@@ -6,11 +6,21 @@ const app =express()
 
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server,{
+    cors:{
+        origin:"*",
+        methods:["POST","PUT", "GET"]
+    }
+});
 
-io.on("connection",(socket)=>{
-    console.log("You are connected");
-})
+
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket .on("send-user", (data)=>{
+        socket.emit("user-sent", data)
+    })
+  });
 
 
 
